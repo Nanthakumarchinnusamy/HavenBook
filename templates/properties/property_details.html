@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+
+        {% if detail.property_image %}
+            <img src="{{ detail.property_image.url }}"
+                 class="card-img-top"
+                 style="height:400px; object-fit:cover;">
+        {% endif %}
+
+        <div class="card-body p-5">
+            <div class="text-end">
+
+                <button class="btn btn-primary"  >
+                    <a href="" style="color: aliceblue;" > Buy $</a></button>
+            </div>
+
+
+            <h1 class="text-primary fw-bold mb-4">
+                {{ detail.name }}
+            </h1>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+                    <h5>🏠 Property Type</h5>
+                    <p>{{ detail.property_type }}</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <h5>💰 Price</h5>
+                    <p>₹ {{ detail.price }}</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <h5>🏢 Floors</h5>
+                    <p>{{ detail.floors }}</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <h5>📌 Category</h5>
+                    <p>{{ detail.category }}</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <h5>📅 Property Age</h5>
+                    <p>{{ detail.age }} years</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <h5>📐 Area</h5>
+                    <p>{{ detail.area }}</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <h5>🌆 City</h5>
+                    <p>{{ detail.city }}</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <h5>🛏 Rooms</h5>
+                    <p>{{ detail.no_of_rooms }}</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <h5>🛁 Bathrooms</h5>
+                    <p>{{ detail.no_of_bathrooms }}</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <h5>🌅 Balcony</h5>
+
+                    {% if detail.balcony %}
+                        <span class="badge bg-success p-2">Available</span>
+                    {% else %}
+                        <span class="badge bg-danger p-2">Not Available</span>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <h5>🚿 Attached Bathroom</h5>
+
+                    {% if detail.attached_bathroom %}
+                        <span class="badge bg-success p-2">Yes</span>
+                    {% else %}
+                        <span class="badge bg-danger p-2">No</span>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <h5>👤 Owner Name</h5>
+                    <p>{{ detail.owner_name }}</p>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <h5>🏡 Realtor Name</h5>
+                    <p>{{ detail.realtorname }}</p>
+                </div>
+
+            </div>
+
+            <div>
+
+                <div class="row">
+                    <div class="col"> 
+                        <h4>Rooms</h4>
+
+                        {% for i in detail.rallpropertics.all %}
+
+                            <img src="{{ i.room_pics.url }}" alt="No img"
+                             style="
+                        width:120px;
+                        height:120px;
+                        object-fit:cover;
+                     ">
+                     <br> <br>
+                        {% endfor %}
+
+                    </div>
+
+                    <div class="col">
+                        <h4>Living Area</h4>
+
+                        {% for i in detail.lallpropertics.all %}
+                            <img src="{{ i.living_pics.url }}"
+                     class="img-fluid rounded shadow mb-2"
+                     style="
+                        width:120px;
+                        height:120px;
+                        object-fit:cover;
+                     ">
+
+            {% endfor %}
+
+        </div>
+          <div class="col">
+
+            <h4>Kitchen</h4>
+
+            {% for i in detail.kallpropertics.all %}
+
+                <img src="{{ i.kitchen_pics.url }}"
+                     class="img-fluid rounded shadow mb-2"
+                     style="
+                        width:120px;
+                        height:120px;
+                        object-fit:cover;
+                     ">
+
+            {% endfor %}
+
+        </div>
+
+
+
+        <!-- BALCONY -->
+
+        <div class="col">
+
+            <h4>Balcony</h4>
+
+            {% for i in detail.baallpropertics.all %}
+
+                <img src="{{ i.balcony_pics.url }}"
+                     class="img-fluid rounded shadow mb-2"
+                     style="
+                        width:120px;
+                        height:120px;
+                        object-fit:cover;
+                     ">
+
+            {% endfor %}
+
+        </div>
+
+
+
+        <!-- BATHROOM -->
+
+        <div class="col">
+
+            <h4>Bathroom</h4>
+
+            {% for i in detail.brallpropertics.all %}
+
+                <img src="{{ i.bathroom_pics.url }}"
+                     class="img-fluid rounded shadow mb-2"
+                     style="
+                        width:120px;
+                        height:120px;
+                        object-fit:cover;
+                     ">
+
+            {% endfor %}
+
+        </div>
+
+
+
+                    </div>
+                </div>
+
+
+
+               
+
+                
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

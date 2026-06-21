@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>User Profile</h1>
+        <h2>{{ user.username}}</h2>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <p>Email:{{user.email}}</p>
+                <p>Phone:{{user.userdata.phone}}</p>
+                <p>House no:{{user.userdata.house_no}}</p>
+                <p>Street:{{user.userdata.street}}</p>
+                <p>LandMark:{{user.userdata.landmark}}</p>
+                <p>City:{{user.userdata.city}}</p>
+                <p>State:{{user.userdata.state}}</p>
+                <p>Zipcode:{{user.userdata.zipcode}}</p>
+                <a class="btn btn-primary" href="{% url 'update' %}">Update</a>
+            </div>
+            <div class="col-md-6">
+                <p>ProfilePic:</p>
+                {% if user.userdata.userpic %}
+                    <img src="{{user.userdata.userpic.url }}" alt="no image" height="300px" width="300px">
+                {% endif %}
+            </div>
+        </div>   
+    </div>
+</div>
+{% endblock %}

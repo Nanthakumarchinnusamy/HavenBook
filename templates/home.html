@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <div class="jumbotron">
+        <form action="" method="get">
+        <input type="text" name="search" placeholder="Search Anythings">
+        <button type="submit">Search</button>
+        </form>
+        <h1>Your Journey To new home starts here...!</h1>
+        <img src="https://images.pexels.com/photos/35420328/pexels-photo-35420328.jpeg" style="height:300px;width: 100%;"alt="">
+        <hr>
+        <h1>Top Properties</h1>
+        <div class="row">
+            {% for i in properties %}
+            <div class="col-md-2 mb-4">
+                <div class="card-h-100">
+                    {% if i.property_image %}
+                    <a href="{% url 'property_details' i.id %} ">
+                        <img src="{{ i.property_image.url }}" alt="" class="card-img-top" style="height:200px;object-fit:cover;">
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-md-2 mb-4">
+                <div class="card-h-100">
+            <div class="text-center mt-4"> 
+                <a href="{% url 'all_properties' %}"> View More</a>
+            </div>
+             </div>
+            </div>
+
+        </div>
+    </div>
+    <hr>
+        <h1>Top Realtors</h1>
+        <div class="row">
+            {% for i in realtor_property %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    {% if i.photo %}
+                    <img src="{{ i.photo.url }}" alt="" class="card-img-top" style="height:200px;object-fit:cover;">
+                    {% else %}
+                    <img src="{% static 'images/avthar.png' %}" alt="" class="card-img-top" style="height:200px;object-fit:cover;">
+                    {% endif %}
+                    <h1><a href="{%  url 'realtordetail' %}">{{i.user}}</a></h1>
+                    
+                    <p>{{i.user.email }}</p>
+                    <p>{{i.address}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+</div>
+<h1>{{ request.GET.search }}</h1>
+{% for i in properties %}
+
+<div class="col-md-2 mb-4">
+
+    <div class="card h-100">
+
+        {% if i.property_image %}
+
+            <img
+                src="{{ i.property_image.url }}"
+                class="card-img-top"
+                style="height:200px;object-fit:cover;"
+            >
+
+        {% endif %}
+
+        <div class="card-body">
+
+            <h5>{{ i.name }}</h5>
+
+            <p>{{ i.city }}</p>
+
+            <p>₹ {{ i.price }}</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<h3>No Properties Found</h3>
+
+{% endfor %}
+<!-- {{ redirect_to_login_immediately }} -->
+{% endblock %}

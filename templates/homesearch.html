@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  {% for i in properties %}
+
+    <div class="card p-3 mt-3">
+         <h3>{{ i.name }}</h3>
+
+        <p>{{ i.city }}</p>
+
+        <p>₹ {{ i.price }}</p>
+
+        {% if i.property_image %}
+
+            <img src="{{ i.property_image.url}}" alt="">
+           {% endif %}
+
+    </div>
+
+  {% empty %}
+
+    <h3>No Properties Found</h3>
+
+{% endfor %}
+
+
+{% endblock %}

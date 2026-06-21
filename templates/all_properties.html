@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1> List of all properties </h1>
+
+<nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <ul class="nav navbar">
+                 <li class="nav-item">
+                    <a href="{% url 'all_properties' 'all' %}"  class="nav-link text-decoration-none"> All </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'all_properties' 'rental' %}"  class="nav-link text-decoration-none"> Rental </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'all_properties' 'buy' %}"  class="nav-link text-decoration-none"> Buy </a>
+                </li>
+               
+            </ul>
+        </div>
+    </nav>
+
+<div class="row">
+    {% for i in main %}
+    
+    <div class="col-md-2 mb-4">
+        <a href="{% url 'property_details' i.id %} "class="text-decoration-none" style="color:black;">
+        <div class="card-h-100">
+            {% if i.property_image %}
+            <img src="{{ i.property_image.url }}" class="card-img-top" alt="no img" style="height:200px;object-fit:cover;">
+            {% endif %}
+            <h3> {{ i.name }}</h3>
+            <h4> $ {{ i.price }}</h4>
+            <h5> {{ i.city }}</h5>
+            </a>
+        </div>
+    </div>
+    
+
+
+
+    {% endfor %}
+</div>
+
+{% endblock %}

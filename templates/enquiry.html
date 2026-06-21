@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if submit %}
+
+<div class="alert alert-success">
+
+    <h1> You are complete you enquiry</h1>
+
+    </div>
+
+   
+
+{% else %}
+ <div class="container">
+        <div class="jumbotron">
+            <div class="card card-body">
+                <h1>Enquiry Form</h1>
+                <br>
+
+        <form action="" method="POST">
+
+            {% csrf_token %}
+
+
+
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-success" > Enquriy </button>
+
+
+        </form>
+        </div>
+        </div>
+    </div>
+ 
+
+{% endif %}
+
+
+
+
+
+
+
+
+{% endblock %}  
